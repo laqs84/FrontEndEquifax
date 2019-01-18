@@ -1,0 +1,19 @@
+{
+   "/equifax/icic/*":{
+        "target":"https://equifax-ws.azurewebsites.net",
+        "secure": false,
+        "changeOrigin": true
+    },
+    "/oauth/*":{
+        "target":"https://equifax-sec.azurewebsites.net",
+        "secure": true,
+        "changeOrigin": true
+    },
+    "/user/*":{
+        "target":"https://equifax-sec.azurewebsites.net",
+        "secure": true,
+        "changeOrigin": true
+    }
+    
+    
+}

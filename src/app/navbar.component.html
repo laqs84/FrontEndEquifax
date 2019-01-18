@@ -1,0 +1,27 @@
+<nav class="navbar navbar-default menu-equifax">
+  <div class="container">
+    <!-- Brand and toggle get grouped for better mobile display -->
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse"
+              data-target="#bs-example-navbar-collapse-1">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="#"><img class="logo-equifax" src="assets/logo.png" alt="logo de equifax"></a>
+    </div>
+
+    <!-- Navbar Right -->
+    <div   class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+      <ul *ngIf="router.url !== '/login'"  class="nav navbar-nav link">
+        <li class="lineanav"><a routerLink="/index/home" routerLinkActive="active">INICIO</a></li>
+        <li class="lineanav"><a routerLink="/index/autorizaciones" routerLinkActive="active">AUTORIZACIONES</a></li>
+        <li class="lineanav"><a routerLink="/index/parseo-masivo" routerLinkActive="active">PARSEO MASIVO</a></li>
+        <li><a routerLink="/index/configuracion" routerLinkActive="active">CONFIGURACION</a></li>
+        <li class="right-li navbar-right logout"><a routerLink="/login" routerLinkActive="active">SALIR</a></li>
+      </ul>  
+      
+    </div>
+  </div>
+</nav>

@@ -1,0 +1,43 @@
+
+<div class="row">
+        <h2 class="tituloall">INICIO</h2>
+    <div class="col-md-5 card shadow">
+
+        <h3 class="titulohome">Autorizaciones</h3>
+            <fusioncharts
+                [width]="width"
+                [height]="height"
+                [type]="type"
+                [dataFormat]="dataFormat"
+                [dataSource]="dataSource">
+            </fusioncharts>
+            <div class="box-buttons">
+                <input type="button" class="button button-login expanded update" (click)="irautorizaciones()" value="Inicio">
+                <input type="button" [disabled]="iniciaralert" class="button button-login expanded update" (click)="iniciar()" value="Iniciar">
+                <input type="button" [disabled]="deteneralert" class="button button-login expanded update" (click)="detener()" value="Detener">
+            </div>
+      </div>
+      <div class="col-md-2"></div>
+
+      <div class="col-md-5 card shadow">
+            <h3 class="titulohome">Parseo Masivo</h3>
+            <fusioncharts
+                [width]="width"
+                [height]="height"
+                [type]="type"
+                [dataFormat]="dataFormat"
+                [dataSource]="dataSource2">
+            </fusioncharts>
+            <div class="box-buttons">
+                <input type="button" class="button button-login expanded update" (click)="irparseo()" value="Inicio">
+                <div class="col-md-2">
+                        <div class="upload-wrap">
+                                <button type="button" class="button button-login update">Carga</button>
+                                <input type="file" name="file" class="upload-btn">
+                        </div>
+                     </div>
+            </div>
+      </div>
+      
+ 
+</div>  

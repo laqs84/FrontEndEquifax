@@ -1,0 +1,154 @@
+<div class="row">
+      <h2 class="tituloall">REPORTE DE LOTES</h2>
+  <form [formGroup]="rForm" (ngSubmit)="addPost(rForm.value)">
+  <div class="col-md-12">
+     <div class="col-md-4">
+      <div class="input-daterange input-group" id="datepicker">
+        <label>Desde
+         <input type="text" id="desde" name="desde" autocomplete="off" (focusout)="getvalue()" [(ngModel)]="desde" #desdeobj appAutofocus formControlName="desde">
+         </label>
+         <span class="input-group-addon sp"></span>
+         <label>Hasta
+         <input type="text" id="hasta" name="hasta" autocomplete="off" (focusout)="getvalue2()" [(ngModel)]="hasta" #hastaobj formControlName="hasta">
+         </label>
+     </div>
+     </div>
+  </div>
+  <div class="col-md-12">
+     <div class="col-md-4">
+        <label>
+           Lote
+           <input type="text" id="lote" name="lote" [(ngModel)]="lote" #loteobj appAutofocus formControlName="lote">
+          <div class="alert" *ngIf="!rForm.controls['lote'].valid && rForm.controls['lote'].touched" ></div>
+        </label>
+     </div>
+
+
+  </div>
+  <div class="col-md-12">
+    <div class="col-md-4">
+       <label>
+          Cedula
+          <input type="text" id="cedula" name="cedula" [(ngModel)]="cedula" #cedulaobj appAutofocus formControlName="cedula">
+          <div class="alert" *ngIf="!rForm.controls['cedula'].valid && rForm.controls['cedula'].touched">{{ cedulaAlert }}</div>
+       </label>
+       
+    </div>
+    
+ </div>
+ <div class="col-md-12">
+    <div class="col-md-4">
+          
+        <input type="button" class="button button-login expanded cancel" value="CANCELAR">
+        <input type="submit" class="button button-login expanded update" *ngIf="botonbuscar" value="BUSCAR" [disabled]="!rForm.valid">
+    </div>
+        <div class="callout warning" *ngIf="loginError"> {{ loginAlert }}</div> 
+ </div>
+</form>
+  <div class="col-md-12">
+     <div class="col-md-12">
+        <input *ngIf="config.filtering" placeholder="Buscar"
+        [ngTableFiltering]="config.filtering"
+        class="form-control"
+        (tableChanged)="onChangeTable(config)"/>
+        <br>
+        <ng-table [config]="config"
+        (tableChanged)="onChangeTable(config)"
+        (cellClicked)="onCellClick($event)"
+        [rows]="rows" [columns]="columns">
+        </ng-table>
+        <div class="showtable" *ngIf="show">
+            <table class="tg">
+                  <tr>
+                    <td class="tg-0lax">
+                        <fusioncharts
+                        [width]="width"
+                        [height]="height"
+                        [type]="type"
+                        [dataFormat]="dataFormat"
+                        [dataSource]="dataSource2">
+                        </fusioncharts>
+                    </td>
+                    <td class="tg-0lax">
+                       <fusioncharts
+                     [width]="width"
+                     [height]="height"
+                     [type]="type"
+                     [dataFormat]="dataFormat"
+                     [dataSource]="dataSource">
+                     </fusioncharts>
+                 </td>
+                    <td class="tg-0lax">
+                        <fusioncharts
+                        [width]="width"
+                        [height]="height"
+                        [type]="type"
+                        [dataFormat]="dataFormat"
+                        [dataSource]="dataSource3">
+                        </fusioncharts>
+                    </td>
+                    <td class="tg-0lax">
+                        <fusioncharts
+                        [width]="width"
+                        [height]="height"
+                        [type]="type"
+                        [dataFormat]="dataFormat"
+                        [dataSource]="dataSource4">
+                        </fusioncharts>
+                    </td>
+                    <td class="tg-0lax">
+                        <label><input type="checkbox" value="">CPH</label>
+                        <br>
+                        <label><input type="checkbox" value="">No autorizados</label>
+                        <br>
+                        <label><input type="checkbox" value="">Resultado Total</label>
+                        <br>
+                        <button type="button" class=" btn btn-light tablebuttons">Descargar Excel</button>
+                    </td>
+                    <td class="tg-0lax">
+                        <label>&nbsp;</label>
+                        <br>
+                        <label>&nbsp;</label>
+                        <br>
+                        <label><input type="checkbox" value="">Resultado</label>
+                        <br>
+                        <button type="button" class="btn btn-light tablebuttons">Descargar Excel</button>
+                    </td>
+                    <td class="tg-0lax">
+                        <label>&nbsp;</label>
+                        <br>
+                        <label>&nbsp;</label>
+                        <br>
+                        <label><input type="checkbox" value="">Lote</label>
+                        <br>
+                        <button type="button" class="btn btn-light tablebuttons">Descargar Excel</button>
+                    </td>
+                  </tr>
+
+                </table>
+                
+        </div>
+        <div class="row pagination-table shadow">
+            <!-- pager -->
+            <div class="col-md-4">
+               <pre *ngIf="config.paging" class="card card-block card-header">Mostrando: {{page}} a {{numPages}} de {{totalitems}} registros</pre>
+             </div>
+             <div class="col-md-8 row8autorizadas">
+            <ul *ngIf="pager.pages && pager.pages.length" class="pagination">
+               <li [ngClass]="{disabled:pager.currentPage === 1}">
+                  <a (click)="setPage(pager.currentPage - 1)">Anterior</a>
+               </li>
+               <li *ngFor="let page of pager.pages" [ngClass]="{active:pager.currentPage === page}">
+               <a (click)="setPage(page)">{{page}}</a>
+               </li>
+               <li [ngClass]="{disabled:pager.currentPage === pager.totalPages}">
+                  <a (click)="setPage(pager.currentPage + 1)">Siguiente</a>
+               </li>
+            </ul>
+            </div>
+          </div>
+     </div>
+     
+      
+   </div>
+</div>

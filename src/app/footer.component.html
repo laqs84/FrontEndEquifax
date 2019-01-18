@@ -1,0 +1,13 @@
+<footer class="footer">
+  <div class="container">
+  <div class="content has-text-centered">
+    <span class="footer-title"><img class="logo-equifax" src="assets/logo.png" alt="logo de equifax"></span> 
+    <ul *ngIf="router.url !== '/login'"  class="nav navbar-nav">
+      <li><a routerLink="/index/home" routerLinkActive="active">Inicio</a></li>
+      <li><a routerLink="/index/reporte-lotes" routerLinkActive="active">Reportes de Lotes</a></li>
+      <li><a routerLink="/index/cargar-excel" routerLinkActive="active">Cargar del Excel</a></li>
+    </ul>
+
+  </div>
+  </div>
+  </footer>

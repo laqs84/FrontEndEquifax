@@ -1,0 +1,127 @@
+<div class="loadWrapper" *ngIf="showProgress">  
+    <div class="loader"></div>  
+  </div>
+<div class="row">
+    <div class="col-md-4">
+<form *ngIf="rol == '1'" [formGroup]="rForm" (ngSubmit)="addPost(rForm.value)">
+    <div class="form-container">
+      <div class="row columns login-box">
+          <h2 class="tituloall">CONFIGURACION DE SUPER USUARIO</h2>
+        
+        <div class='input-group date' id='datetimepicker1'>
+            <input type='text' class="form-control" (focusout)="getvalue()" autocomplete="off"  id="fechas" name="fechas" [(ngModel)]="fechas" #fechasobj formControlName="fechas" />
+            <span class="input-group-addon">
+                <span (click)="opendates()"  class="glyphicon glyphicon-calendar"></span>
+            </span>
+        </div>
+        <div class="form-group notificacion">
+            <div class="input-group">
+                <input id="horainicio" name="horainicio"  [(ngModel)]="horainicio" class="timenoti" type="time" placeholder="Hora de envio de las notificaciones" value="{{selectedTime}}" #horainicioobj  formControlName="horainicio">
+                <span (click)="open()" class="input-group-addon warning"><span class="glyphicon glyphicon-time"></span></span>
+            </div>
+        </div>
+        <div class="form-group notificacion">
+            <div class="input-group">
+                <input id="horafin" name="horafin" [(ngModel)]="horafin" class="timenoti" type="time" placeholder="Hora de envio de las notificaciones" value="{{selectedTime2}}" #horafinobj  formControlName="horafin">
+                <span (click)="open2()" class="input-group-addon warning"><span class="glyphicon glyphicon-time"></span></span>
+            </div>
+        </div>
+        <label>Usuario
+            <input type="text" disabled id="username" name="username" [(ngModel)]="Username" #usernameobj  formControlName="username">
+            <div class="alert" *ngIf="!rForm.controls['username'].valid && rForm.controls['username'].touched" ></div>
+          </label>
+        
+        <label>Pin 
+          <input type="text" name="pin" id="pin" [(ngModel)]="pin" #pinobj  formControlName="pin">
+          <div class="alert" *ngIf="!rForm.controls['pin'].valid && rForm.controls['pin'].touched">{{ pinAlert }}</div>
+        </label>   
+        <div class="callout warning" *ngIf="loginError"> {{ loginAlert }}</div>   
+        <input type="button" class="button button-login expanded cancel" value="CANCELAR">
+        <input type="submit" class="button button-login expanded update" value="ACTUALIZAR">
+      </div>
+    </div>
+  </form>
+
+
+
+
+
+
+<!-- Jefe operador -->
+
+<form *ngIf="rol == '2'" [formGroup]="rForm" (ngSubmit)="addPost(rForm.value)">
+  <div class="form-container">
+    <div class="row columns login-box">
+      <h2 class="tituloall">CONFIGURACION DE JEFE OPERADOR</h2>
+        
+      <input type="checkbox" id="recibirCorreos" name="recibirCorreos" [(ngModel)]="recibirCorreos" #recibirCorreosobj appAutofocus formControlName="recibirCorreos"> Recibir correo de notificacion
+      
+        <div class="form-group notificacion">
+            <div class="input-group">
+                <input id="horaNotificacion" name="horaNotificacion" [(ngModel)]="horaNotificacion" class="timenoti" type="time" placeholder="Hora de envio de las notificaciones" value="{{selectedTime}}" #horaNotificacionobj appAutofocus formControlName="horaNotificacion">
+                <span (click)="open()" class="input-group-addon warning"><span class="glyphicon glyphicon-time"></span></span>
+            </div>
+        </div>
+      <label>Usuario
+        <input type="text" disabled id="username" name="username" [(ngModel)]="Username" #usernameobj appAutofocus formControlName="username">
+        <div class="alert" *ngIf="!rForm.controls['username'].valid && rForm.controls['username'].touched" ></div>
+      </label>
+      
+      <label>Pin 
+        <input type="text" name="pin" id="pin" [(ngModel)]="pin" #pinobj appAutofocus formControlName="pin">
+        <div class="alert" *ngIf="!rForm.controls['pin'].valid && rForm.controls['pin'].touched">{{ pinAlert }}</div>
+      </label>  
+      
+      
+
+      <div class="callout warning" *ngIf="loginError"> {{ loginAlert }}</div>   
+      <input type="button" class="button button-login expanded cancel" value="CANCELAR">
+      <input type="submit" class="button button-login expanded update" value="ACTUALIZAR">
+    </div>
+  </div>
+</form>
+
+<!-- operador -->
+
+<form *ngIf="rol == '3'" [formGroup]="rForm" (ngSubmit)="addPost(rForm.value)">
+  <div class="form-container">
+    <div class="row columns login-box">
+      <h2 class="tituloall">CONFIGURACION DE OPERADOR</h2>
+        
+      
+
+     <!--  <div class="funkyradio">
+          <div class="funkyradio-success">
+              <input type="checkbox" name="firma" id="firma" checked/>
+              <label for="firma">FIRMA DIGITAL INSTALADA</label>
+          </div>
+      </div>
+       -->
+      <label>Usuario
+        <input type="text" disabled id="username" name="username" [(ngModel)]="Username" #usernameobj appAutofocus formControlName="username">
+        <div class="alert" *ngIf="!rForm.controls['username'].valid && rForm.controls['username'].touched" ></div>
+      </label>
+      
+      <label>Pin 
+        <input type="text" name="pin" id="pin" [(ngModel)]="pin" #pinobj appAutofocus formControlName="pin">
+        <div class="alert" *ngIf="!rForm.controls['pin'].valid && rForm.controls['pin'].touched">{{ pinAlert }}</div>
+      </label>  
+      
+      <label>Carpeta asignada para carga de cedulas 
+        <input type="text" name="rutaAutorizaciones" id="rutaAutorizaciones" [(ngModel)]="rutaAutorizaciones" #rutaAutorizacionesobj appAutofocus formControlName="rutaAutorizaciones">
+        <div class="alert" *ngIf="!rForm.controls['rutaAutorizaciones'].valid && rForm.controls['rutaAutorizaciones'].touched">{{ rutaAutorizacionesAlert }}</div>
+        </label> 
+        <label>Carpeta asignada para mover las cédulas autorizadas
+         <input type="text" name="rutaAutorizacionesProc" id="rutaAutorizacionesProc" [(ngModel)]="rutaAutorizacionesProc" #rutaAutorizacionesProcobj appAutofocus formControlName="rutaAutorizacionesProc">
+        <div class="alert" *ngIf="!rForm.controls['rutaAutorizacionesProc'].valid && rForm.controls['rutaAutorizacionesProc'].touched">{{ rutaAutorizacionesProcAlert }}</div>
+        </label>
+
+      <div class="callout warning" *ngIf="loginError"> {{ loginAlert }}</div>   
+      <input type="button" class="button button-login expanded cancel" value="CANCELAR">
+      <input type="submit" class="button button-login expanded update" value="ACTUALIZAR">
+    </div>
+  </div>
+</form>
+
+  </div>
+</div>

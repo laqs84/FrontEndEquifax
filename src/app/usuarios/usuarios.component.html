@@ -1,0 +1,69 @@
+<div class="row">
+  <div class="col-md-4">
+<form [formGroup]="rForm" (ngSubmit)="addPost(rForm.value)">
+  <div class="form-container">
+    <div class="row columns login-box">
+      <h2 class="tituloall">ADMIN</h2>
+      <input type="checkbox" id="recibirCorreos" name="recibirCorreos" [(ngModel)]="recibirCorreos" #recibirCorreosobj appAutofocus formControlName="recibirCorreos"> Recibir correo de notificacion
+
+        <div class="form-group notificacion">
+            <div class="input-group">
+                <input id="horaNotificacion" name="horaNotificacion" [(ngModel)]="horaNotificacion" class="timenoti" type="time" placeholder="Hora de envio de las notificaciones" value="{{selectedTime}}" #horaNotificacionobj appAutofocus formControlName="horaNotificacion">
+                <span (click)="open()" class="input-group-addon warning"><span class="glyphicon glyphicon-time"></span></span>
+            </div>
+        </div>
+
+        
+        
+
+        <div class="funkyradio">
+            <div class="funkyradio-success">
+                <input type="checkbox" name="firma" id="firma" checked/>
+                <label for="firma">FIRMA DIGITAL INSTALADA</label>
+            </div>
+        </div>
+         
+        <label>Username
+          <input type="text" id="username" name="username" [(ngModel)]="Username" #usernameobj appAutofocus formControlName="username">
+          <div class="alert" *ngIf="!rForm.controls['username'].valid && rForm.controls['username'].touched" ></div>
+        </label>
+        <label>Nombre del Certificado 
+          <input type="text" id="nombrecerf" id="nombrecerf">
+          <div class="alert" *ngIf="!rForm.controls['nombrecerf'].valid && rForm.controls['nombrecerf'].touched" ></div>
+        </label> 
+        <label>Cedula
+          <input type="text" id="cedula" name="cedula" [(ngModel)]="cedula" #cedulaobj appAutofocus formControlName="cedula">
+          <div class="alert" *ngIf="!rForm.controls['cedula'].valid && rForm.controls['cedula'].touched">{{ cedulaAlert }}</div>
+        </label>
+        <label>Tipo de Cedula
+          <select name="tipoCedula" [(ngModel)]="tipoCedulauser"  #tipoCedulaobj appAutofocus formControlName="tipoCedula" >
+            <option value="0" disabled selected>Seleccione el Tipo de Cedula</option>
+            <option *ngFor="let select of list" [value]="select.recno"> {{ select.descripcion }}</option>
+          </select>
+          <div class="alert" *ngIf="!rForm.controls['tipoCedula'].valid && rForm.controls['tipoCedula'].touched">{{ tipoCedulaAlert }}</div>
+        </label>
+        <label>Codigo de la empresa
+          <input type="text" name="codEmpresa" id="codEmpresa" [(ngModel)]="codEmpresa" #codEmpresaobj appAutofocus formControlName="codEmpresa">
+          <div class="alert" *ngIf="!rForm.controls['codEmpresa'].valid && rForm.controls['codEmpresa'].touched">{{ codEmpresaAlert }}</div>
+         
+        </label>
+        <label>Correo
+          <input type="text" name="correo" id="correo" [(ngModel)]="correo" #correoobj appAutofocus formControlName="correo">
+          <div class="alert" *ngIf="!rForm.controls['correo'].valid && rForm.controls['correo'].touched">{{ correoAlert }}</div>
+        </label>
+        <label>ID de Equifax
+          <input type="text" name="idEquifax" id="idEquifax" [(ngModel)]="Username" #idEquifaxobj appAutofocus formControlName="idEquifax">
+          <div class="alert" *ngIf="!rForm.controls['idEquifax'].valid && rForm.controls['idEquifax'].touched">{{ idEquifaxAlert }}</div>
+        </label> 
+        <label>Pin 
+          <input type="text" name="pin" id="pin" [(ngModel)]="pin" #pinobj appAutofocus formControlName="pin">
+          <div class="alert" *ngIf="!rForm.controls['pin'].valid && rForm.controls['pin'].touched">{{ pinAlert }}</div>
+        </label>   
+        <div class="callout warning" *ngIf="loginError"> {{ loginAlert }}</div>     
+      <input type="submit" class="button button-login expanded update" value="CREAR" [disabled]="!rForm.valid">
+      <input type="button" class="button button-login expanded cancel" value="CANCELAR">
+    </div>
+  </div>
+</form>
+</div>
+</div>

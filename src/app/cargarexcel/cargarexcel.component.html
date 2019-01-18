@@ -1,0 +1,81 @@
+<div class="loadWrapper" *ngIf="showProgress">  
+      <div class="loader"></div>  
+    </div>
+<div class="row">
+      <h2 class="tituloall">CARGA DE EXCEL</h2>
+    <div class="col-md-12">
+       <div class="col-md-4">
+          <label>
+             Archivo Excel
+             <input type="file" #excelcsv style="display: inline-block;" (change)="incomingfile($event)" placeholder="Subir el excel" accept=".csv">
+             <div class="alert"></div>
+          </label>
+       </div>
+    </div>
+    <div class="row">
+    <div id="sortable" class="col-md-12">
+         
+       <div class="col-lg-4">
+          <label id="cedula">
+             Cedula
+             
+          </label>
+       </div>
+       <div class="col-lg-4">
+          <label id="tipoCedula">
+             Tipo
+             
+          </label>
+       </div>
+       <div class="col-lg-4">
+          <label id="autorizado">
+             Autorizado
+             
+          </label>
+       </div>
+    </div>
+   </div>
+    <div class="col-md-12">
+       <div class="col-md-12">
+            <input *ngIf="config.filtering" placeholder="Filtrar todas las columnas"
+            [ngTableFiltering]="config.filtering"
+            class="form-control"
+            (tableChanged)="onChangeTable(config)"/>
+            <ng-table [config]="config"
+            (tableChanged)="onChangeTable(config)"
+            (cellClicked)="onCellClick($event)" 
+            [rows]="rows"  [columns]="columns">
+            </ng-table>
+            <div class="row pagination-table shadow">
+            <!-- pager -->
+            <div class="col-md-4">
+               <pre *ngIf="config.paging" class="card card-block card-header">Mostrando: {{page}} a {{numPages}} de {{totalitems}} registros</pre>
+             </div>
+             <div class="col-md-8 row8autorizadas">
+            <ul *ngIf="pager.pages && pager.pages.length" class="pagination">
+               <li [ngClass]="{disabled:pager.currentPage === 1}">
+                  <a (click)="setPage(pager.currentPage - 1)">Anterior</a>
+               </li>
+               <li *ngFor="let page of pager.pages" [ngClass]="{active:pager.currentPage === page}">
+               <a (click)="setPage(page)">{{page}}</a>
+               </li>
+               <li [ngClass]="{disabled:pager.currentPage === pager.totalPages}">
+                  <a (click)="setPage(pager.currentPage + 1)">Siguiente</a>
+               </li>
+            </ul>
+            </div>
+          </div>
+          <div>
+                <!--<pre *ngIf="config.paging" class="resultadosautorizadas card card-block card-header"> Enviadas • {{autor}} Procesadas • {{autor}} Autorizadas • {{errors}} Con Errores</pre>-->
+    
+          </div>
+          
+       </div>
+       <div class="row">
+        <div class="col-md-4">
+          <input type="button" class="button button-login expanded cancel" value="CANCELAR">
+          <input type="submit" (click)="Upload()" class="button button-login expanded update" value="CARGAR">
+        </div>
+      </div>
+     </div>
+ </div>

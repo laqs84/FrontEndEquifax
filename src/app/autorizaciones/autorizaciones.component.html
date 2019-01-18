@@ -1,0 +1,89 @@
+<div class="row">
+  <h2 class="tituloall">AUTORIZACIONES</h2>
+  
+  <div class="col-md-12">
+      <div class="col-md-2">
+            <h3 class="titulos-segundo">Cedulas</h3>
+            
+            
+      </div>
+      <div class="col-lg-8">
+            <h3 class="titulos-segundo">Detalles de Cedulas en proceso de autorizaciones</h3>
+      </div>
+      <div class="col-md-2">
+            <h3 class="titulos-segundo titulos-principal">Reportes</h3>
+      </div>
+  </div>
+  <div class="col-md-12">
+      <div class="col-md-2">
+            <div class="col-md-2">
+               <span class="hiddenFileInput">
+            
+                  <input type="button" disabled style="display: inline-block;">
+                  
+                </span>
+                
+            </div>
+            <div class="col-md-2 navbar-right flechasposicionleft">
+               <img src="../../../assets/flechas.png" class="imgflachaleft" alt="">
+            </div>
+            
+         </div>
+     
+     <div class="col-lg-8 center-col">
+        
+        <input *ngIf="config.filtering" placeholder="Filtrar todas las columnas"
+        [ngTableFiltering]="config.filtering"
+        class="form-control"
+        (tableChanged)="onChangeTable(config)"/>
+        <ng-table [config]="config"
+        (tableChanged)="onChangeTable(config)"
+        (cellClicked)="onCellClick($event)" 
+        [rows]="rows"  [columns]="columns">
+        </ng-table>
+        <div class="row pagination-table shadow">
+        <!-- pager -->
+        <div class="col-md-4">
+           <pre *ngIf="config.paging" class="card card-block card-header">Mostrando: {{page}} a {{numPages}} de {{totalitems}} registros</pre>
+         </div>
+         <div class="col-md-8 row8autorizadas">
+        <ul *ngIf="pager.pages && pager.pages.length" class="pagination">
+           <li [ngClass]="{disabled:pager.currentPage === 1}">
+              <a (click)="setPage(pager.currentPage - 1)">Anterior</a>
+           </li>
+           <li *ngFor="let page of pager.pages" [ngClass]="{active:pager.currentPage === page}">
+           <a (click)="setPage(page)">{{page}}</a>
+           </li>
+           <li [ngClass]="{disabled:pager.currentPage === pager.totalPages}">
+              <a (click)="setPage(pager.currentPage + 1)">Siguiente</a>
+           </li>
+        </ul>
+        </div>
+      </div>
+      <div>
+            <pre *ngIf="config.paging" class="resultadosautorizadas card card-block card-header"> Enviadas • {{autor}} Procesadas • {{autor}} Autorizadas • {{errors}} Con Errores</pre>
+
+      </div>
+      
+      
+ 
+      <input type="button" [disabled]="iniciaralert" class="button button-login expanded update" (click)="iniciar()" value="Iniciar">
+      <input type="button" [disabled]="deteneralert" class="button button-login expanded update" (click)="detener()" value="Detener">
+        
+     </div>
+     <div class="col-md-2">
+         
+         <div class="col-md-2 flechasposicionright">
+            <img src="../../../assets/flechas.png" alt="">   
+         </div>
+         
+         <span class="hiddenFileInput2">
+         
+            <input type="button" disabled name="descargar" value="Descargar" (click)="download($event)"/>
+            
+          </span>
+         
+      </div>
+  </div>
+
+  </div>

@@ -1,0 +1,27 @@
+<app-navbar></app-navbar>
+<div class="loadWrapper" *ngIf="showProgress">  
+  <div class="loader"></div>  
+</div>
+<div class="col-xs-12">
+  <div class="center-block box-principal">
+  
+  <form [formGroup]="rForm" (ngSubmit)="addPost(rForm.value)">
+    <div class="form-container">
+      <div class="row columns login-box">
+        <img class="logoapp" src="assets/logoapp.png">
+        <label>Usuario
+          <input type="text" #usernameobj appAutofocus formControlName="username">
+          <div class="alert" *ngIf="!rForm.controls['username'].valid && rForm.controls['username'].touched">{{ usernameAlert }}</div>
+        </label>
+        <label>Contraseña
+          <input type="password" formControlName="password">
+          <div class="alert"  *ngIf="!rForm.controls['password'].valid && rForm.controls['password'].touched">{{ passwordAlert }}</div>
+        </label>  
+        <div class="callout warning" *ngIf="loginError"> {{ loginAlert }}</div>   
+        <input type="submit" class="button button-login expanded update" value="INGRESAR" [disabled]="!rForm.valid">
+      </div>
+    </div>
+  </form>
+</div>
+</div>
+  <app-footer></app-footer>

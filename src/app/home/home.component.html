@@ -1,0 +1,43 @@
+<app-navbar></app-navbar>
+<div class="loadWrapper" *ngIf="showProgress">  
+    <div class="loader"></div>  
+  </div>
+<div class="row">
+
+<ngx-smart-modal  #popupOne [identifier]="'popupOne'" [closable]="false">
+  
+<div class="row">
+    <div class="col-md-12">
+        
+<form [formGroup]="rForm" (ngSubmit)="addPost(rForm.value)">
+    <div class="form-container">
+      <div class="row columns login-box">
+        <h1>ICIC</h1>
+        <h2 class="tituloall">POR FAVOR COMPLETAR LOS SIGUIENTES CAMPOS</h2>
+         <label>Pin 
+            <input type="text" name="pin" id="pin" [(ngModel)]="pin" #pinobj appAutofocus formControlName="pin">
+            <div class="alert" *ngIf="!rForm.controls['pin'].valid && rForm.controls['pin'].touched">{{ pinAlert }}</div>
+          </label>  
+          
+          <label>Carpeta asignada para carga de cedulas 
+            <input type="text" name="rutaAutorizaciones" id="rutaAutorizaciones" [(ngModel)]="rutaAutorizaciones" #rutaAutorizacionesobj appAutofocus formControlName="rutaAutorizaciones">
+            <div class="alert" *ngIf="!rForm.controls['rutaAutorizaciones'].valid && rForm.controls['rutaAutorizaciones'].touched">{{ rutaAutorizacionesAlert }}</div>
+            </label> 
+            <label>Carpeta asignada para mover las cédulas autorizadas
+             <input type="text" name="rutaAutorizacionesProc" id="rutaAutorizacionesProc" [(ngModel)]="rutaAutorizacionesProc" #rutaAutorizacionesProcobj appAutofocus formControlName="rutaAutorizacionesProc">
+            <div class="alert" *ngIf="!rForm.controls['rutaAutorizacionesProc'].valid && rForm.controls['rutaAutorizacionesProc'].touched">{{ rutaAutorizacionesProcAlert }}</div>
+        </label>
+        <div class="callout warning" *ngIf="loginError"> {{ loginAlert }}</div>   
+        <input type="submit" class="button button-login expanded update" *ngIf="guardaralert" value="GUARDAR" [disabled]="!rForm.valid">
+        <input type="submit" class="button button-login expanded update" *ngIf="actualizaralert" value="ACTUALIZAR" [disabled]="!rForm.valid">
+      </div>
+    </div>
+  </form>
+  </div>
+</div>
+
+</ngx-smart-modal>
+<h1>ICIC</h1>
+<router-outlet></router-outlet>
+
+<app-footer></app-footer>
